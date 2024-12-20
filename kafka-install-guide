@@ -1,0 +1,36 @@
+steps for running and install kafka on mac follow below steps:
+
+brew --version
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install kafka
+brew info kafka
+
+above commands would install kafka on machine
+
+to run zookeeper
+/usr/local/opt/kafka/bin/zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties
+
+to run kafka
+/usr/local/opt/kafka/bin/kafka-server-start /usr/local/etc/kafka/server.properties
+
+creating a topic
+/usr/local/opt/kafka/bin/kafka-topics --create --topic test-topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
+
+producing message
+/usr/local/opt/kafka/bin/kafka-console-producer --topic test-topic --bootstrap-server localhost:9092
+
+location-update-topic
+/usr/local/opt/kafka/bin/kafka-console-producer --topic location-update-topic --bootstrap-server localhost:9092
+
+consuming message
+/usr/local/opt/kafka/bin/kafka-console-consumer --topic test-topic --from-beginning --bootstrap-server localhost:9092
+
+/usr/local/opt/kafka/bin/kafka-console-consumer --topic location-update-topic --from-beginning --bootstrap-server localhost:9092
+
+
+
+/usr/local/opt/kafka/bin/kafka-topics --create --topic location-update-topic --bootstrap-server localhost:9092
+
+
+brew services start kafka
